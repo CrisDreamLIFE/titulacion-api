@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  state: MyString
+  start_date: 2021-02-18
+  end_date: 2021-02-18
+  close_date: 2021-02-18
+  tareas_pendientes: 1
+  tareas_realizadas: 1
+
+two:
+  title: MyString
+  state: MyString
+  start_date: 2021-02-18
+  end_date: 2021-02-18
+  close_date: 2021-02-18
+  tareas_pendientes: 1
+  tareas_realizadas: 1

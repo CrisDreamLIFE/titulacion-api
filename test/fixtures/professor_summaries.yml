@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professor_id: 1
+  name: MyString
+  first_lastname: MyString
+  second_lastname: MyString
+  grade: 
+  email: MyString
+  avatar: MyString
+  num_tesis: 
+  num_tesis_med: 1.5
+  asignadas: 1
+  topicos: 
+  dias_rev_med: MyString
+  academic: false
+  num_tesis_abandonadas: 1
+  tiempo_final_med: MyString
+
+two:
+  professor_id: 1
+  name: MyString
+  first_lastname: MyString
+  second_lastname: MyString
+  grade: 
+  email: MyString
+  avatar: MyString
+  num_tesis: 
+  num_tesis_med: 1.5
+  asignadas: 1
+  topicos: 
+  dias_rev_med: MyString
+  academic: false
+  num_tesis_abandonadas: 1
+  tiempo_final_med: MyString

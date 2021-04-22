@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  thesis_id: 1
+  thype_id: 1
+  topic_id: 1
+  program_id: 1
+  status: MyString
+  year: 1
+  semester: 1
+  dias_rev: 1
+
+two:
+  thesis_id: 1
+  thype_id: 1
+  topic_id: 1
+  program_id: 1
+  status: MyString
+  year: 1
+  semester: 1
+  dias_rev: 1
