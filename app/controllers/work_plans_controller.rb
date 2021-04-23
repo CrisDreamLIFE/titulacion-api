@@ -24,8 +24,6 @@ class WorkPlansController < ApplicationController
       puts "el valor del id:"
       puts tesis_id
       plan = WorkPlan.where(thesis_id: tesis_id)
-      puts "plan[id]"
-      puts plan[0]["id"]
       if(plan.length == 0)
         data[0]=-1  
       else

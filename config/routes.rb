@@ -11,13 +11,15 @@ Rails.application.routes.draw do
   resources :work_plans
   get "/dataBarGraph", to: "proffesor_javier#dataBarGraph"
   post "/updateTasks", to: "tasks#updateTasks"
-  get "/allStudents", to: "student_javier#allStudents"
+  #get "/allStudents", to: "student_javier#allStudents"
   get "/test", to: "student_javier#test"
 
   #Thesis
   get "/updateThesis", to: "thesis_summaries#updateInfo"
 
   #Student
+  get "/updateStudent", to: "student_summaries#updateInfo"
+  get "/allStudents", to: "student_summaries#allStudents"
   post "/studentByEmail", to: "student_summaries#searchByEmail"
   post "/newStudent", to: "student_summaries#newStudent"
 

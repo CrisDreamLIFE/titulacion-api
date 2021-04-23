@@ -1,26 +1,23 @@
 class ProfessorSummariesController < ApplicationController
   before_action :set_professor_summary, only: [:show, :update, :destroy]
 
+  require 'TopicJavierUtilities'
+
   #Update info thesis
   def updateInfo
+    occ = TopicJavierUtilities.new()
     obj = ProffesorJavierUtilities.new()
     ooo = ProfessorSummary.new()
     proffesors = obj.selectAllProffesors
     cantidades = obj.cantidadThesisForProffesor(proffesors)
     medias = ooo.finalMediaXProfesor(proffesors)
+    programas = occ.selectAllPrograms
     proffesors.each_with_index do |element, index|
       gradoName = nil
-      if(element["grade"]==1)
-        gradoName = "Doctorado"
-      end
-      if(element["grade"]==2)
-        gradoName = "Magíster"
-      end
-      if(element["grade"]==3)
-        gradoName = "Civil"
-      end
-      if(element["grade"]==4)
-        gradoName = "Ejecución"
+      programas.each_with_index do |prog, i|
+        if(element["grade"]==prog["grade"])
+          gradoName = prog["name"]
+        end
       end
       if ProfessorSummary.where(email: element["email"]).empty?
         thesis = ProfessorSummary.new(email:element["email"],

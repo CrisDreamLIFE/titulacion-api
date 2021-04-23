@@ -1,6 +1,53 @@
 class StudentSummariesController < ApplicationController
   before_action :set_student_summary, only: [:show, :update, :destroy]
 
+  require 'StudentJavierUtilities'
+  require 'TopicJavierUtilities'
+  #Update info student
+  def updateInfo
+    occ = TopicJavierUtilities.new()
+    obj = StudentJavierUtilities.new()
+    students = obj.selectAllStudent
+    programas = occ.selectAllPrograms
+    students.each_with_index do |element, index|
+      gradoName = nil
+      programas.each_with_index do |prog, i|
+        if(element["program"]==prog["grade"])
+          gradoName = prog["name"]
+        end
+      end
+
+      if StudentSummary.where(email: element["email"]).empty?
+        student = StudentSummary.new(email:element["email"],
+                student_id: element["id"],
+                name:element["name"],
+                first_lastname:element["first_lastname"],
+                second_lastname: element["second_lastname"],
+                year_income:  element["year_income"],
+                program_id: element["program"],  #grade_id
+                program_name: gradoName,
+                num_temas: 1,#especial,
+                num_guias: 1 #especial
+                )
+        student.save
+
+      
+      else
+        student = StudentSummary.where(email: element["email"]).take
+        student.update(email:element["email"],
+                      student_id: element["id"],
+                      name:element["name"],
+                      first_lastname:element["first_lastname"],
+                      second_lastname: element["second_lastname"],
+                      year_income:  element["year_income"],
+                      program_id: element["program"],  #grade_id
+                      program_name: gradoName, #especial
+                      num_temas: 1,#especial,
+                      num_guias: 1 #especial
+              )
+      end
+    end
+  end
 
 
   def newStudent
@@ -26,6 +73,11 @@ class StudentSummariesController < ApplicationController
         "student" => student
       }
     render json: data
+  end
+
+  def allStudents
+    students = StudentSummary.where.not(first_lastname: nil)
+    render json: students
   end
 
   # GET /student_summaries
