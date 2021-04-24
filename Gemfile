@@ -35,7 +35,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'devise'
   gem 'httparty'
   gem 'rest-client'
   gem 'listen', '~> 3.3'
