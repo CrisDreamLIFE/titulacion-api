@@ -1,14 +1,14 @@
 class StudentJavierUtilities
 
     def selectAllStudent
-        url = 'http://127.0.0.1:8000/tracker/student/'
-        response = RestClient.get url, {Authorization: 'Token ca393b0e830aa77ab90aa8a18fd2877f23091ad2'}
+        url = 'http://ec2-100-25-103-59.compute-1.amazonaws.com/tracker/student/'
+        response = RestClient.get url, {Authorization: 'Token b99aa300d382f7491e0e6103d8cf5cd55aeecc3e'}
         a_hash = JSON.parse(response.body) #hasheamos la respuesta para poder acceder
     end
 
     def testRequest
-        url = 'http://127.0.0.1:8000/tracker/student'
-        response = HTTParty.get(url, params:{id:1}, headers: {Authorization: 'Token ca393b0e830aa77ab90aa8a18fd2877f23091ad2'})
+        url = 'http://ec2-100-25-103-59.compute-1.amazonaws.com/tracker/student'
+        response = HTTParty.get(url, params:{id:1}, headers: {Authorization: 'Token b99aa300d382f7491e0e6103d8cf5cd55aeecc3e'})
         a_hash = JSON.parse(response.body)
     end
 end
