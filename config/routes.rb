@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :student_summaries
   resources :admins
-  devise_for :users
   resources :proposals
   resources :professor_summaries
   resources :thesis_summaries
