@@ -1,6 +1,6 @@
 class ThesisSummariesController < ApplicationController
   before_action :set_thesis_summary, only: [:show, :update, :destroy]
-  require 'ThesisJavierUtilities'
+
 
 #Update info thesis
   def updateInfo

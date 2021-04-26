@@ -35,8 +35,8 @@ class ProfessorSummariesController < ApplicationController
                 dias_rev_med: 0, #especial
                 academic: element["academic"],
                 num_tesis_abandonadas: 5, #especial
-                tiempo_final_med: 1.3, #especial
-                topicos: element["topics"]
+                tiempo_final_med: 1.3 #especial
+                #opicos: element["topics"]
                 )
         thesis.save
 
@@ -58,8 +58,8 @@ class ProfessorSummariesController < ApplicationController
                 dias_rev_med: 0, #especial
                 academic: element["academic"],
                 num_tesis_abandonadas: 5, #especial
-                tiempo_final_med: 1.3, #especial
-                topicos: element["topics"]
+                tiempo_final_med: 1.3 #especial
+                #topicos: element["topics"]
               )
       end
     end

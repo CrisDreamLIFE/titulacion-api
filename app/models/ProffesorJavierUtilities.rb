@@ -1,6 +1,6 @@
 class ProffesorJavierUtilities
     #include HTTParty
-
+    require 'rest-client'
     #no existe el servicio en django
     def allGrades
         url = 'http://ec2-100-25-103-59.compute-1.amazonaws.com/tracker/grades/'

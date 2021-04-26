@@ -6,6 +6,7 @@ class CreateProfessorSummaries < ActiveRecord::Migration[6.1]
       t.string :first_lastname
       t.string :second_lastname
       t.string :grade
+      t.string :grade_name
       t.string :email
       t.string :avatar
       t.integer :num_tesis
