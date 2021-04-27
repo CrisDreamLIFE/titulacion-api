@@ -2,6 +2,7 @@ class ProfessorSummariesController < ApplicationController
   before_action :set_professor_summary, only: [:show, :update, :destroy]
 
   require 'TopicJavierUtilities'
+  require 'thesis_summary'
 
   #Update info thesis
   def updateInfo
@@ -87,11 +88,13 @@ class ProfessorSummariesController < ApplicationController
   end
 
   def professorMemorias
-    obg = ProfessorSummary.new()
-    puts "el id que me llega:"
-    puts params["professor_id"]
-    algo = obg.professorMemorias(params["professor_id"])
-    render json: algo
+    puts "email que me llega"
+    puts params["guia_email"]
+    tesis_all = ThesisSummary.where(guia_email: params["guia_email"])
+    if tesis_all.length == 0
+      tesis_all = 0
+    end
+    render json: tesis_all
   end
 
   # GET /professor_summaries

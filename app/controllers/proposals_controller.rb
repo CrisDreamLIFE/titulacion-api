@@ -76,7 +76,9 @@ class ProposalsController < ApplicationController
 
   def propuestaProfesor
     #propuesta = Proposal.where(professor_id: params["professor_id"])
-    propuesta = Proposal.where(professor_id: 19)
+    puts "el id que me llega,,"
+    puts params["professor_id"]
+    propuesta = Proposal.where(professor_id: params["professor_id"])
     render json: propuesta
   end
 

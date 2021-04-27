@@ -58,6 +58,8 @@ class StudentSummariesController < ApplicationController
   end
 
   def searchByEmail
+    puts "el email que me llega"
+    puts params["student_email"]
     student =  StudentSummary.where(email: params["student_email"])
     is = false
     if (student.length() ==1)

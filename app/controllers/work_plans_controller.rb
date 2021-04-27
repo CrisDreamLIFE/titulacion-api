@@ -3,7 +3,89 @@ class WorkPlansController < ApplicationController
   require 'activity'
   require 'thesis_summary'
 
-  
+  def PlanByEmail
+    email = params["student_email"]
+    tesis_all = ThesisSummary.where(student_email: email)
+    tesis_id = nil
+    data=[]
+    register = 1
+    puts "fuerq del if"
+    puts tesis_all[0]
+    if(tesis_all.length == 0)
+      puts "entre al if"
+      register = 0
+    else
+      tesis_all.each_with_index do |tesis, i|
+        if(tesis["status"] == "OP")
+          tesis_id = tesis["id"]
+          break  
+        end
+      end
+      puts "el valor del id:"
+      puts tesis_id
+    end
+    puts "en el else"
+    
+    #plan = WorkPlan.where(thesis_id: tesis_id)
+    plan = WorkPlan.where(student_email: email)
+    if(plan.length == 0)
+      data[0]=-1  #no tengo plan, pero si tengo tesis
+    else
+      activities = Activity.where(work_plan_id: plan[0]["id"])#order(created_at: :asc)
+      activities.each_with_index do |element, index|
+        tasks = element.task.order(state: :desc)
+        commentaries = element.commentary
+        aux_task =[]
+        aux_commentary=[]
+        tasks.each_with_index do |task, i|
+          aux = {
+            "activity_id" =>task["id"],
+            "close_date" =>task["close_date"],
+            "created_at" =>task["created_at"],
+            "end_date" =>task["end_date"],
+            "id" =>task["id"].to_s,
+            "start_date" =>task["start_date"],
+            "state" =>task["state"],
+            "title" =>task["title"],
+            "updated_at" =>task["updated_at"],
+          }
+          aux_task.push(aux)
+        end
+        commentaries.each_with_index do |commentary, j|
+          #traer el nombre del issuer (autor)
+          aux2 = {
+            "message" =>commentary["message"],
+            "issuer_name" =>"Pepito",
+            "issuer_id" =>commentary["issuer_id"],
+            "issuer_date" =>commentary["issuer_date"],
+            "state" =>commentary["state"],
+            "id" =>commentary["id"].to_s
+          }
+          aux_commentary[j] = aux2
+        end
+        data_aux = {
+          "id" => element["id"],
+          "title" => element["title"],
+          "state" => element["state"],
+          "start_date" => element["start_date"],
+          "end_date" => element["end_date"],
+          "close_date" => element["close_date"],
+          "task_pending" => element["task_pending"],
+          "task_finished" => element["task_finished"],
+          "tasks" => aux_task,
+          "commentaries" => aux_commentary
+        }
+        data[index] = data_aux
+      end
+    end
+    
+    final = []
+    final[0] = plan
+    final[1] = data
+    final[2] = register
+    render json: final
+  end
+
   # GET /work_plans
   def index
     @work_plans = WorkPlan.all
