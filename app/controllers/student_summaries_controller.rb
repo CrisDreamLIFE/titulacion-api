@@ -62,6 +62,7 @@ class StudentSummariesController < ApplicationController
     puts params["student_email"]
     student =  StudentSummary.where(email: params["student_email"])
     is = false
+    puts student.length
     if (student.length() ==1)
       student = student[0]
       is = true
